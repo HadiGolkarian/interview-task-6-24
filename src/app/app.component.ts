@@ -6,8 +6,5 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.sass'
 })
-export class AppComponent {
-  title = 'interview-task-6-24';
-}
+export class AppComponent {}
