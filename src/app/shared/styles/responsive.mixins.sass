@@ -22,3 +22,19 @@ $max-width-lg: 1440px
 @mixin xl
     @media (min-width: $max-width-lg + 1)
         @content
+
+@mixin min-sm
+    @media (min-width: $max-width-xs + 1)
+        @content
+
+@mixin min-md
+    @media (min-width: $max-width-sm + 1)
+        @content
+
+@mixin min-lg
+    @media (min-width: $max-width-md + 1)
+        @content
+
+@mixin min-xl
+    @media (min-width: $max-width-lg + 1)
+        @content
