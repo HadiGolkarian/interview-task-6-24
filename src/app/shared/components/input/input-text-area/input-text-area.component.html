@@ -1,0 +1,12 @@
+<div class="input-wrapper">
+  <label class="input-lable">{{ label }}</label>
+  <textarea
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    (input)="onChange($event)"
+    (blur)="onTouched()"
+    rows="3"
+    class="input-element"
+  ></textarea>
+</div>
