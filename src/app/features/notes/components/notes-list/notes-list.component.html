@@ -1,1 +1,7 @@
-<p>notes-list works!</p>
+<ul class="notes-list">
+  @for (note of notes; track note.id) {
+  <li><app-note-card [note]="note"></app-note-card></li>
+  } @empty {
+  <li>There are no notes.</li>
+  }
+</ul>
