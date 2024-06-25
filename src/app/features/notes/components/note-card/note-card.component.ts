@@ -68,4 +68,12 @@ export class NoteCardComponent implements OnInit {
       this.onNoteDelete.emit(this.note);
     });
   }
+
+  handleCancelClick(): void {
+    this.mode = 'view';
+    this.updateNoteForm.reset({
+      title: this.note.title,
+      note: this.note.note,
+    });
+  }
 }
