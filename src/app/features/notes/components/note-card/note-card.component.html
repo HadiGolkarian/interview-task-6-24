@@ -35,8 +35,8 @@
         <app-button [disabled]="!updateNoteForm.valid">Save</app-button>
         <app-button
           color="secondary"
-          (onClick)="mode = 'view'"
-          color="secondary"
+          (onClick)="handleCancelClick()"
+          type="button"
           >Cancel</app-button
         >
       </div>
@@ -50,7 +50,10 @@
       </p>
       <div class="delete-actions">
         <app-button color="danger" (onClick)="onDelete()">Delete</app-button>
-        <app-button (onClick)="mode = 'view'" color="secondary"
+        <app-button
+          (onClick)="handleCancelClick()"
+          color="secondary"
+          type="button"
           >Cancel</app-button
         >
       </div>

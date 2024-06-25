@@ -1,6 +1,9 @@
 import { NgClass } from '@angular/common';
 import { Component, Input, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  NgControl
+} from '@angular/forms';
 
 @Component({
   selector: 'app-input-text',
@@ -50,11 +53,11 @@ export class InputTextComponent implements ControlValueAccessor {
   onTouched() {}
 
   get control() {
-    return this.ngControl.control;
+    return this.ngControl?.control;
   }
 
   get isRequired(): boolean {
-    const control = this.ngControl.control;
+    const control = this.ngControl?.control;
     if (!control || !control.validator) {
       return false;
     }

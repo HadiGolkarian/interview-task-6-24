@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { CreateNoteComponent } from './create-note.component';
 
 describe('CreateNoteComponent', () => {
@@ -8,9 +10,9 @@ describe('CreateNoteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateNoteComponent]
-    })
-    .compileComponents();
+      imports: [CreateNoteComponent],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CreateNoteComponent);
     component = fixture.componentInstance;
