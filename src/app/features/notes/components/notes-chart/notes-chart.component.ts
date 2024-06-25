@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
-import { NotesApiService } from '../../../../core/data/notes-api.service';
+import { Subscription } from 'rxjs';
 import { CardComponent } from '../../../../shared/components/card/card.component';
+import { NotesService } from '../../services/notes.service';
 
 @Component({
   selector: 'app-notes-chart',
@@ -10,7 +11,9 @@ import { CardComponent } from '../../../../shared/components/card/card.component
   templateUrl: './notes-chart.component.html',
   styleUrl: './notes-chart.component.sass',
 })
-export class NotesChartComponent implements OnInit {
+export class NotesChartComponent implements OnInit, OnDestroy {
+  statsSubscription?: Subscription;
+  chart: any;
   chartOptions = {
     animationEnabled: true,
     theme: 'light2',
@@ -39,16 +42,27 @@ export class NotesChartComponent implements OnInit {
     ],
   };
 
-  constructor(private notesApiService: NotesApiService) {}
+  getChartInstance(chart: object) {
+    this.chart = chart;
+    this.notesService.loadStats();
+  }
+
+  constructor(private notesService: NotesService) {}
 
   ngOnInit(): void {
-    this.notesApiService.getStats().subscribe((stats) => {
+    this.statsSubscription = this.notesService.stats$.subscribe((stats) => {
       this.chartOptions.data[0].dataPoints = stats.map(
         ({ createdAt, notes }) => ({
           x: new Date(createdAt),
           y: notes,
         })
       ) as any;
+
+      this.chart?.render();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.statsSubscription?.unsubscribe();
   }
 }

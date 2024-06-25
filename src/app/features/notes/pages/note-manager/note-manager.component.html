@@ -1,9 +1,8 @@
+<div>
+  <app-search-notes />
+</div>
 <div class="notes-wrapper">
-  <app-create-note (onCreate)="reloadNotes()" />
-  <app-notes-list
-    [notes]="(notes$ | async)!"
-    (onDelete)="reloadNotes()"
-    (onUpdate)="reloadNotes()"
-  ></app-notes-list>
+  <app-create-note />
+  <app-notes-list></app-notes-list>
   <app-notes-chart />
 </div>
