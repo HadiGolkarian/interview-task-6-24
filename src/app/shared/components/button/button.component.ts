@@ -12,6 +12,7 @@ export class ButtonComponent {
   @Output() onClick = new EventEmitter<any>();
   @Input() disabled = false;
   @Input() type: 'submit' | 'button' = 'submit';
+  @Input() color: 'primary' | 'danger' | 'secondary' = 'primary';
 
   handleClick() {
     this.onClick.emit();

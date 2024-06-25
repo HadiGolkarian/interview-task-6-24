@@ -1,0 +1,39 @@
+.header
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.note-title
+    margin-top: 0
+    margin-bottom: 0
+    word-break: break-word
+
+.note-text
+    word-break: break-word
+
+.button
+    border: none
+    background: transparent
+    padding: 5px 10px
+    border-radius: 5px
+    cursor: pointer
+    &:hover
+        background: #0061fc
+        color: white
+    &:active
+        background: #1351b3
+        color: white
+
+.action-buttons
+    display: flex
+    width: fit-content
+    & > :not(:last-child)
+        margin-right: 10px
+
+.update-note-form > :not(:last-child)
+    margin-bottom: 20px
+
+.delete-actions
+    margin-top: 20px
+    & > :not(:last-child)
+        margin-right: 20px

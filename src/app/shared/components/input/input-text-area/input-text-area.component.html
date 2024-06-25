@@ -1,12 +1,15 @@
 <div class="input-wrapper">
-  <label class="input-lable">{{ label }}</label>
+  <label class="input-lable">
+    {{ label }}
+    @if (isRequired) {<span class="required">*</span>}
+  </label>
   <textarea
     [placeholder]="placeholder"
     [value]="value"
     [disabled]="disabled"
     (input)="handleInput($event)"
     (blur)="onTouched()"
-    rows="3"
+    rows="5"
     class="input-element"
     [ngClass]="{
       'input-element-error':

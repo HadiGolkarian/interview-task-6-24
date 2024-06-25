@@ -1,7 +1,21 @@
 <ul class="notes-list">
   @for (note of notes; track note.id) {
-  <li><app-note-card [note]="note"></app-note-card></li>
-  } @empty {
-  <li>There are no notes.</li>
+  <li>
+    <app-note-card
+      [note]="note"
+      (onNoteDelete)="handleNoteDelete($event)"
+      (onNoteUpdate)="handleNoteUpdate($event)"
+    ></app-note-card>
+  </li>
   }
 </ul>
+
+@if(!notes || !notes.length) {
+<div class="no-note">
+  <p>
+    There are no notes.
+    <br />
+    Start by creating a new note
+  </p>
+</div>
+}

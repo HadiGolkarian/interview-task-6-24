@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CreateNoteComponent } from '../../components/create-note/create-note.component';
 import { NotesChartComponent } from '../../components/notes-chart/notes-chart.component';
 import { NotesListComponent } from '../../components/notes-list/notes-list.component';
@@ -20,11 +20,15 @@ import { NotesService } from '../../services/notes.service';
   styleUrl: './note-manager.component.sass',
 })
 export class NoteManagerComponent implements OnInit {
-  notes$?: Observable<Note[]>;
+  notes$?: Observable<Note[]> = of([]);
 
   constructor(private notesService: NotesService) {}
 
   ngOnInit(): void {
+    this.notes$ = this.notesService.getNotes();
+  }
+
+  reloadNotes(): void {
     this.notes$ = this.notesService.getNotes();
   }
 }
