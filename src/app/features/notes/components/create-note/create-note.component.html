@@ -1,20 +1,24 @@
 <app-card>
   <h3 class="header">Create Note</h3>
-  <form [formGroup]="createNoteForm" class="create-note-form">
+  <form
+    [formGroup]="createNoteForm"
+    (ngSubmit)="onSubmit()"
+    class="create-note-form"
+  >
     <div>
       <app-input-text
-        [formControlName]="'title'"
+        formControlName="title"
         label="Note title"
       ></app-input-text>
     </div>
     <div>
       <app-input-text-area
-        [formControlName]="'note'"
+        formControlName="note"
         label="Note"
       ></app-input-text-area>
     </div>
     <div>
-      <app-button (onClick)="onSubmit()">Create</app-button>
+      <app-button [disabled]="!createNoteForm.valid">Create</app-button>
     </div>
   </form>
 </app-card>

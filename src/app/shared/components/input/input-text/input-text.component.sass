@@ -7,7 +7,17 @@
 
     .input-element
         border-radius: 15px
-        border: 1px solid #eaeaea
+        border: 1px solid #cdcdcd
         font-size: 1rem
         padding: 5px 10px
+        margin-top: 5px
+
+    .input-element-error
+        border: 1px solid red
+        &:focus-visible
+            outline: 1px solid red
+
+    .error-messages
+        font-size: 0.8rem
+        color: red
         margin-top: 5px

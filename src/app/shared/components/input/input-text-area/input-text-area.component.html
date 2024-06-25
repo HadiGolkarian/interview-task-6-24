@@ -4,9 +4,26 @@
     [placeholder]="placeholder"
     [value]="value"
     [disabled]="disabled"
-    (input)="onChange($event)"
+    (input)="handleInput($event)"
     (blur)="onTouched()"
     rows="3"
     class="input-element"
+    [ngClass]="{
+      'input-element-error':
+        control!.invalid && (control!.dirty || control!.touched)
+    }"
   ></textarea>
+
+  @if (control!.invalid && (control!.dirty || control!.touched)) {
+  <div class="error-messages">
+    @if (control!.errors?.['required']) {
+    <div>This field is required.</div>
+    }@else if (control!.errors?.['maxlength']) {
+    <div>
+      Maximum length ({{control!.errors?.['maxlength'].requiredLength}}
+      characters) exceeded.
+    </div>
+    }@else {Value is not valid}
+  </div>
+  }
 </div>
