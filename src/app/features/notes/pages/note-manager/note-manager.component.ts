@@ -6,6 +6,7 @@ import { NotesChartComponent } from '../../components/notes-chart/notes-chart.co
 import { NotesListComponent } from '../../components/notes-list/notes-list.component';
 import { Note } from '../../models/note.model';
 import { NotesService } from '../../services/notes.service';
+import { SearchNotesComponent } from '../../components/search-notes/search-notes.component';
 
 @Component({
   selector: 'app-note-manager',
@@ -14,6 +15,7 @@ import { NotesService } from '../../services/notes.service';
     CreateNoteComponent,
     NotesListComponent,
     NotesChartComponent,
+    SearchNotesComponent,
     AsyncPipe,
   ],
   templateUrl: './note-manager.component.html',
