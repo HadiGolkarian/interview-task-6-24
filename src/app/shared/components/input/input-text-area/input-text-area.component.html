@@ -13,17 +13,17 @@
     class="input-element"
     [ngClass]="{
       'input-element-error':
-        control!.invalid && (control!.dirty || control!.touched)
+        control?.invalid && (control?.dirty || control?.touched)
     }"
   ></textarea>
 
-  @if (control!.invalid && (control!.dirty || control!.touched)) {
+  @if (control?.invalid && (control?.dirty || control?.touched)) {
   <div class="error-messages">
-    @if (control!.errors?.['required']) {
+    @if (control?.errors?.['required']) {
     <div>This field is required.</div>
-    }@else if (control!.errors?.['maxlength']) {
+    }@else if (control?.errors?.['maxlength']) {
     <div>
-      Maximum length ({{control!.errors?.['maxlength'].requiredLength}}
+      Maximum length ({{control?.errors?.['maxlength'].requiredLength}}
       characters) exceeded.
     </div>
     }@else {Value is not valid}
