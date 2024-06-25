@@ -4,6 +4,13 @@
     class="search-input"
     placeholder="Search Notes"
     (input)="handleInputChange($event)"
+    #searchInput
   />
+  @if (currentSearchTerm.length) {
+  <button (click)="handleClearSearch(searchInput)" class="clear-button">
+    <fa-icon [icon]="faRemove"></fa-icon>
+  </button>
+  } @else {
   <fa-icon [icon]="faSearch" class="search-icon"></fa-icon>
+  }
 </div>

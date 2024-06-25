@@ -23,9 +23,9 @@ export class NotesApiService {
   }
 
   searchNotes(searchText: string): Observable<Note[]> {
-    return this.http.post<Note[]>(`${this.apiUrl}/search`, {
-      text: searchText,
-    });
+    return this.http.get<Note[]>(
+      `${this.apiUrl}/search?searchText=${searchText}`
+    );
   }
 
   createNote(newValues: { title: string; note: string }): Observable<Note> {

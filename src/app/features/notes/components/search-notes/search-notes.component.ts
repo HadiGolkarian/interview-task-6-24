@@ -14,7 +14,7 @@ import { NotesService } from '../../services/notes.service';
 export class SearchNotesComponent {
   faSearch = faSearch;
   faRemove = faRemove;
-
+  currentSearchTerm: string = '';
   private searchText = new Subject<string>();
 
   constructor(private noteService: NotesService) {}
@@ -25,11 +25,18 @@ export class SearchNotesComponent {
         debounceTime(1000),
         map((searchTerm: string) => this.noteService.searchNotes(searchTerm))
       )
-      .subscribe((results) => {});
+      .subscribe();
   }
 
   handleInputChange(e: Event) {
     const target = e.target as HTMLInputElement;
+    this.currentSearchTerm = target.value;
     this.searchText.next(target.value);
+  }
+
+  handleClearSearch(searchInput: HTMLInputElement) {
+    searchInput.value = '';
+    this.currentSearchTerm = '';
+    this.searchText.next('');
   }
 }
