@@ -1,24 +1,30 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Note } from '../../models/note.model';
+import { NotesService } from '../../services/notes.service';
 import { NoteCardComponent } from '../note-card/note-card.component';
 
 @Component({
   selector: 'app-notes-list',
   standalone: true,
-  imports: [NoteCardComponent],
+  imports: [NoteCardComponent, AsyncPipe],
   templateUrl: './notes-list.component.html',
   styleUrl: './notes-list.component.sass',
 })
-export class NotesListComponent {
-  @Input() notes: Note[] = [];
-  @Output() onDelete = new EventEmitter();
-  @Output() onUpdate = new EventEmitter();
+export class NotesListComponent implements OnInit, OnDestroy {
+  notes: Note[] = [];
+  notesSubscription?: Subscription;
 
-  handleNoteDelete(note: Note) {
-    this.onDelete.emit(note);
+  constructor(public notesService: NotesService) {}
+
+  ngOnInit(): void {
+    this.notesSubscription = this.notesService.notes$.subscribe(
+      (notes) => (this.notes = notes)
+    );
   }
 
-  handleNoteUpdate(note: Note) {
-    this.onUpdate.emit(note);
+  ngOnDestroy(): void {
+    this.notesSubscription?.unsubscribe();
   }
 }

@@ -1,4 +1,9 @@
 <div class="search">
-  <input type="text" class="search-input" placeholder="Search Notes" />
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search Notes"
+    (input)="handleInputChange($event)"
+  />
   <fa-icon [icon]="faSearch" class="search-icon"></fa-icon>
 </div>
