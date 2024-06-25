@@ -15,4 +15,8 @@ export class NotesApiService {
   getAll(): Observable<Note[]> {
     return this.http.get<Note[]>(this.apiUrl);
   }
+
+  deleteNote(note: Note): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${note.id}`);
+  }
 }

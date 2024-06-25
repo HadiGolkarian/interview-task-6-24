@@ -27,4 +27,8 @@ export class NoteManagerComponent implements OnInit {
   ngOnInit(): void {
     this.notes$ = this.notesService.getNotes();
   }
+
+  reloadNotes(): void {
+    this.notes$ = this.notesService.getNotes();
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Note } from '../../models/note.model';
 import { NoteCardComponent } from '../note-card/note-card.component';
 
@@ -11,4 +11,9 @@ import { NoteCardComponent } from '../note-card/note-card.component';
 })
 export class NotesListComponent {
   @Input() notes: Note[] = [];
+  @Output() onDelete = new EventEmitter();
+
+  handleNoteDelete(note: Note) {
+    this.onDelete.emit(note);
+  }
 }
