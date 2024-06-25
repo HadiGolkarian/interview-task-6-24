@@ -1,1 +1,60 @@
-<p>note-card works!</p>
+<app-card>
+  <div>
+    @switch (mode) { @case ('view') {
+    <div class="header">
+      <h3 class="note-title">{{ note.title }}</h3>
+      <div class="action-buttons">
+        <button class="button" (click)="mode = 'edit'">
+          <fa-icon [icon]="faPencil"></fa-icon>
+        </button>
+        <button class="button" (click)="mode = 'delete'">
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </button>
+      </div>
+    </div>
+    <p>{{ note.note }}</p>
+    } @case ('edit') {
+    <form
+      [formGroup]="updateNoteForm"
+      (ngSubmit)="onSubmit()"
+      class="update-note-form"
+    >
+      <div>
+        <app-input-text
+          formControlName="title"
+          label="Note title"
+        ></app-input-text>
+      </div>
+      <div>
+        <app-input-text-area
+          formControlName="note"
+          label="Note"
+        ></app-input-text-area>
+      </div>
+      <div class="action-buttons">
+        <app-button [disabled]="!updateNoteForm.valid">Save</app-button>
+        <app-button
+          color="secondary"
+          (onClick)="mode = 'view'"
+          color="secondary"
+          >Cancel</app-button
+        >
+      </div>
+    </form>
+    } @case ('delete') {
+    <div>
+      <h3 class="note-title">{{ note.title }}</h3>
+      <p>
+        Are you sure you want to delete this note? <br />
+        This action cannot be undone.
+      </p>
+      <div class="delete-actions">
+        <app-button color="danger" (onClick)="onDelete()">Delete</app-button>
+        <app-button (onClick)="mode = 'view'" color="secondary"
+          >Cancel</app-button
+        >
+      </div>
+    </div>
+    } }
+  </div>
+</app-card>
