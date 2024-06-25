@@ -12,6 +12,12 @@ export class NotesApiService {
 
   constructor(private http: HttpClient) {}
 
+  getStats(): Observable<{ createdAt: Date; notes: number }[]> {
+    return this.http.get<{ createdAt: Date; notes: number }[]>(
+      `${this.apiUrl}/stats`
+    );
+  }
+
   getAll(): Observable<Note[]> {
     return this.http.get<Note[]>(this.apiUrl);
   }
