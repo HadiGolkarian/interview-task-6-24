@@ -1,10 +1,11 @@
+import { NgClass } from '@angular/common';
 import { Component, Input, Optional, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-text-area',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './input-text-area.component.html',
   styleUrl: './input-text-area.component.sass',
 })
@@ -25,6 +26,12 @@ export class InputTextAreaComponent implements ControlValueAccessor {
     }
   }
 
+  handleInput(e: Event) {
+    const inputElement = e.target as HTMLInputElement;
+    this.value = inputElement.value;
+    this.onChange(this.value);
+  }
+
   writeValue(value: any): void {
     this.value = value;
   }
@@ -40,4 +47,8 @@ export class InputTextAreaComponent implements ControlValueAccessor {
 
   onChange(e: Event) {}
   onTouched() {}
+
+  get control() {
+    return this.ngControl.control;
+  }
 }

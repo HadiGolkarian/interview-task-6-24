@@ -1,13 +1,30 @@
-import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CreateNoteComponent } from '../../components/create-note/create-note.component';
 import { NotesChartComponent } from '../../components/notes-chart/notes-chart.component';
 import { NotesListComponent } from '../../components/notes-list/notes-list.component';
+import { Note } from '../../models/note.model';
+import { NotesService } from '../../services/notes.service';
 
 @Component({
   selector: 'app-note-manager',
   standalone: true,
-  imports: [CreateNoteComponent, NotesListComponent, NotesChartComponent],
+  imports: [
+    CreateNoteComponent,
+    NotesListComponent,
+    NotesChartComponent,
+    AsyncPipe,
+  ],
   templateUrl: './note-manager.component.html',
   styleUrl: './note-manager.component.sass',
 })
-export class NoteManagerComponent {}
+export class NoteManagerComponent implements OnInit {
+  notes$?: Observable<Note[]>;
+
+  constructor(private notesService: NotesService) {}
+
+  ngOnInit(): void {
+    this.notes$ = this.notesService.getNotes();
+  }
+}

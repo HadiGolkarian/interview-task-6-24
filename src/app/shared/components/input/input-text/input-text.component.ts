@@ -1,13 +1,11 @@
+import { NgClass } from '@angular/common';
 import { Component, Input, Optional, Self } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NgControl
-} from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-text',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.sass',
 })
@@ -29,6 +27,12 @@ export class InputTextComponent implements ControlValueAccessor {
     }
   }
 
+  handleInput(e: Event) {
+    const inputElement = e.target as HTMLInputElement;
+    this.value = inputElement.value;
+    this.onChange(this.value);
+  }
+
   writeValue(value: any): void {
     this.value = value;
   }
@@ -44,4 +48,8 @@ export class InputTextComponent implements ControlValueAccessor {
 
   onChange(e: Event) {}
   onTouched() {}
+
+  get control() {
+    return this.ngControl.control;
+  }
 }
