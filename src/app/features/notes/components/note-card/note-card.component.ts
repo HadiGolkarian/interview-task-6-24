@@ -31,6 +31,7 @@ import { Note } from '../../models/note.model';
 export class NoteCardComponent implements OnInit {
   @Input() note: Note = { id: -1, title: '', note: '', createdAt: new Date() };
   @Output() onNoteDelete = new EventEmitter();
+  @Output() onNoteUpdate = new EventEmitter();
 
   mode: 'view' | 'edit' | 'delete' = 'view';
 
@@ -54,7 +55,13 @@ export class NoteCardComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    this.notesApiService
+      .updateNote(this.note, this.updateNoteForm.value)
+      .subscribe(() => {
+        this.onNoteUpdate.emit(this.note);
+      });
+  }
 
   onDelete(): void {
     this.notesApiService.deleteNote(this.note).subscribe(() => {

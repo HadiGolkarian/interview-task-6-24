@@ -1,13 +1,16 @@
-@for (note of notes; track note.id) {
 <ul class="notes-list">
+  @for (note of notes; track note.id) {
   <li>
     <app-note-card
       [note]="note"
       (onNoteDelete)="handleNoteDelete($event)"
+      (onNoteUpdate)="handleNoteUpdate($event)"
     ></app-note-card>
   </li>
+  }
 </ul>
-} @empty {
+
+@if(!notes || !notes.length) {
 <div class="no-note">
   <p>
     There are no notes.

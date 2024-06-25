@@ -12,8 +12,13 @@ import { NoteCardComponent } from '../note-card/note-card.component';
 export class NotesListComponent {
   @Input() notes: Note[] = [];
   @Output() onDelete = new EventEmitter();
+  @Output() onUpdate = new EventEmitter();
 
   handleNoteDelete(note: Note) {
     this.onDelete.emit(note);
+  }
+
+  handleNoteUpdate(note: Note) {
+    this.onUpdate.emit(note);
   }
 }

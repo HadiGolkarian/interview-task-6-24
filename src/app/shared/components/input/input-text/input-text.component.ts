@@ -52,4 +52,14 @@ export class InputTextComponent implements ControlValueAccessor {
   get control() {
     return this.ngControl.control;
   }
+
+  get isRequired(): boolean {
+    const control = this.ngControl.control;
+    if (!control || !control.validator) {
+      return false;
+    }
+
+    const validator = control.validator({} as any);
+    return validator && validator['required'];
+  }
 }

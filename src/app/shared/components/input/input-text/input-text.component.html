@@ -1,5 +1,8 @@
 <div class="input-wrapper">
-  <label class="input-lable">{{ label }}</label>
+  <label class="input-lable">
+    {{ label }}
+    @if (isRequired) {<span class="required">*</span>}
+  </label>
   <input
     [type]="type"
     [placeholder]="placeholder"

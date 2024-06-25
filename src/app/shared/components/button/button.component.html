@@ -3,8 +3,11 @@
   [disabled]="disabled"
   [ngClass]="{ disabled }"
   class="button"
-  [type]="type"
-  [ngClass]="color"
+  [ngClass]="{
+    danger: color === 'danger',
+    secondary: color === 'secondary',
+    disabled: disabled
+  }"
 >
   <ng-content />
 </button>
